@@ -1,4 +1,4 @@
-def krotka(a)
+def krotka(a):
     k=tuple(a)
     return k
 
