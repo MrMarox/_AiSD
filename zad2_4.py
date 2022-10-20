@@ -7,7 +7,7 @@ y = input('Podaj Nazwisko ')
 
 foo(x,y)
 
-def foo2(a, b, c)
+def foo2(a, b, c):
     return c(a, b)
 
 
