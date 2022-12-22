@@ -1,0 +1,61 @@
+from typing import Any, Optional, Dict, List
+from enum import Enum
+
+
+class EdgeType(Enum):
+    directed = 1
+    undirected = 2
+
+
+class Vertex:
+    data: Any
+    index: int
+
+    def __init__(self, data: Any, index: int):
+        self.data = data
+        self.index = index
+
+
+class Edge:
+    source: Vertex
+    destination: Vertex
+    weight: Optional[float]
+
+    def __init__(self, source: Vertex, destination: Vertex, weight: Optional[float]):
+        self.source = source
+        self.destination = destination
+        self.weight = weight
+
+
+class Graph:
+    adjacencies: Dict[Vertex, List[Edge]]
+
+    def __init__(self, adjacencies: Dict[Vertex, List[Edge]]) -> None:
+        self.adjacencies = adjacencies
+
+    def create_vertex(self, data: Any) -> Vertex:
+        vertex = Vertex(data, 0)
+        self.adjacencies[vertex] = []
+        return vertex
+
+    def add_directed_edge(self, source: Vertex, destination: Vertex, weight: Optional[float] = None) -> None:
+        edge = Edge(destination, source, weight)
+        if self.adjacencies[source] == []:
+            self.adjacencies[source] = [edge]
+        else:
+            self.adjacencies[source].append(edge)
+
+    def add_undirected_edge(self,destination: Vertex, source: Vertex, weight: Optional[float] = None) -> None:
+        edge = Edge(destination, source, weight)
+        if self.adjacencies[source] == []:
+            self.adjacencies[source] = [edge]
+        else:
+            self.adjacencies[source].append(edge)
+
+
+v = Graph({})
+print(v.create_vertex(2))
+
+
+
+
